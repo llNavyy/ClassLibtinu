@@ -79,8 +79,9 @@ namespace ClassLibtinu
 
         public static List<Produto> ListaProduto(string _descricao)
         {
-            return new List<Produto>();
-            List<Produto> produtos = new List<Produto>(); //Este método apresentará uma lista de produtos, ao ser chamado com o parâmetro "descricao"
+            
+            List<Produto> produtos = new List<Produto>();
+            return produtos;//Este método apresentará uma lista de produtos, ao ser chamado com o parâmetro "descricao"
         }
     }
 }

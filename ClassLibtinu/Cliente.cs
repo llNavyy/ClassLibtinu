@@ -84,9 +84,9 @@ namespace ClassLibtinu
         }
         public static List<Cliente> Listar()
         {
-            return new List<Cliente>(); 
+            
             List<Cliente> clientes = new List<Cliente>();
-
+            return clientes;
 
         }
 
