@@ -13,7 +13,9 @@ namespace ClassLibtinu
         private string nome;
         private string email;
         private string password;
+        private Nivel nivel;
         private bool ativo;
+
 
         //propriedades - essas propriedades servem para podermos acessar os atributos da classe de "fora".
         public int Id { get { return id; } set { id = value; } }
@@ -23,8 +25,11 @@ namespace ClassLibtinu
         public string Email { get { return email; } set { email = value; } }
         
         public string Password { get { return password;} }
+        public Nivel Nivel { get { return nivel; } }
 
         public bool Ativo { get { return ativo; } set { ativo = value; } }
+
+       
         //métodos construtores
 
 
@@ -33,22 +38,24 @@ namespace ClassLibtinu
 
         } 
 
-        public Usuario(string nome, string email, string senha) // <- Método construtor
+        public Usuario(string nome, string email, string senha, Nivel nivel) // <- Método construtor
         {
             this.nome = nome; // O this aponta para o atributo "nome"
             this.email = email;
             password = senha;
+            this.nivel = nivel;
             ativo = true;
            
         }
 
-        public Usuario(int id, string nome, string email, string password, bool ativo)
+        public Usuario(int id, string nome, string email, string password, bool ativo, Nivel nivel)
         {
             this.id = id;
             this.nome = nome;
             this.email = email;
             this.password = password;
             this.ativo = ativo;
+            this.nivel = nivel;
             
         }
 
