@@ -17,7 +17,7 @@ namespace ClassLibtinu
 
 
         // Criando Propriedades
-        public int Id { get { return id; } }
+        public int Id { get { return id; } }  
         public string Nome { get { return nome; } private set { nome = value; } }
         public string Sigla { get { return sigla; } }
 

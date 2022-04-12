@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+
 
 namespace ClassLibtinu
 {
@@ -37,7 +39,7 @@ namespace ClassLibtinu
         {
         }
 
-        public Cliente(string name, string cpf, DateTime dataCad, string email)
+        public Cliente(string name, string cpf,  string email)
         {
             Nome = name;
             Cpf = cpf;
@@ -58,11 +60,16 @@ namespace ClassLibtinu
         }
         //Métodos da Classe
 
-        public static void Inserir(Cliente cliente)
+        public void Inserir(Cliente cliente)
         {
-
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "insert clientes(nome, cpf, email, datacad, ativo) " + "values('" + cliente.Nome + "', '" + cliente.Cpf + "', '" + cliente.Email + "', default, default)";
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "select @@indetity";
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.Connection.Close();
         }
-
         public bool Alterar(Cliente cliente)
         {
             return true;
