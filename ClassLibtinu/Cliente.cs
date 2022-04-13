@@ -39,9 +39,9 @@ namespace ClassLibtinu
         {
         }
 
-        public Cliente(string name, string cpf,  string email)
+        public Cliente(string nome, string cpf,  string email)
         {
-            Nome = name;
+            Nome = nome;
             Cpf = cpf;
             Email = email;
             //DataCad = DateTime.Now;
@@ -60,13 +60,14 @@ namespace ClassLibtinu
         }
         //Métodos da Classe
 
-        public void Inserir(Cliente cliente)
+        public void Inserir()
         {
             var cmd = Banco.Abrir();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert clientes(nome, cpf, email, datacad, ativo) " + "values('" + cliente.Nome + "', '" + cliente.Cpf + "', '" + cliente.Email + "', default, default)";
-            cmd.ExecuteNonQuery();
-            cmd.CommandText = "select @@indetity";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_cliente_inserir";
+            cmd.Parameters.AddWithValue("_nome", Nome);
+            cmd.Parameters.AddWithValue("_cpf", Cpf);
+            cmd.Parameters.AddWithValue("_email", Email);
             Id = Convert.ToInt32(cmd.ExecuteScalar());
             cmd.Connection.Close();
         }
@@ -93,6 +94,22 @@ namespace ClassLibtinu
         {
             
             List<Cliente> clientes = new List<Cliente>();
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from clientes order by nome";
+            var dr = cmd.ExecuteReader();
+            
+            while (dr.Read())
+            {
+                clientes.Add(new Cliente(
+                    dr.GetInt32(0),
+                    dr.GetString(1),
+                    dr.GetString(2),
+                    dr.GetString(3),
+                    dr.GetDateTime(4),
+                    dr.GetBoolean(5)));
+
+            }
             return clientes;
 
         }

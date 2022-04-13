@@ -28,90 +28,90 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtNome = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.txtCpf = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtCpf = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnInserir = new System.Windows.Forms.Button();
+            this.lstClientes = new System.Windows.Forms.ListBox();
+            this.btnListar = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // txtNome
-            // 
-            this.txtNome.Location = new System.Drawing.Point(229, 154);
-            this.txtNome.MaxLength = 60;
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(245, 22);
-            this.txtNome.TabIndex = 0;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(229, 182);
-            this.textBox2.MaxLength = 11;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(143, 22);
-            this.textBox2.TabIndex = 1;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(229, 210);
-            this.textBox3.MaxLength = 60;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(245, 22);
-            this.textBox3.TabIndex = 2;
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(229, 126);
+            this.txtId.Location = new System.Drawing.Point(97, 56);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(45, 22);
-            this.txtId.TabIndex = 3;
+            this.txtId.Size = new System.Drawing.Size(40, 20);
+            this.txtId.TabIndex = 0;
+            // 
+            // txtNome
+            // 
+            this.txtNome.Location = new System.Drawing.Point(97, 82);
+            this.txtNome.MaxLength = 60;
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(202, 20);
+            this.txtNome.TabIndex = 1;
+            // 
+            // txtCpf
+            // 
+            this.txtCpf.Location = new System.Drawing.Point(97, 108);
+            this.txtCpf.MaxLength = 11;
+            this.txtCpf.Name = "txtCpf";
+            this.txtCpf.Size = new System.Drawing.Size(100, 20);
+            this.txtCpf.TabIndex = 2;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(97, 134);
+            this.txtEmail.MaxLength = 60;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(202, 20);
+            this.txtEmail.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(163, 132);
+            this.label1.Location = new System.Drawing.Point(43, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 16);
+            this.label1.Size = new System.Drawing.Size(18, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "ID";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(163, 160);
+            this.label2.Location = new System.Drawing.Point(46, 88);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Nome";
             // 
-            // txtCpf
+            // label3
             // 
-            this.txtCpf.AutoSize = true;
-            this.txtCpf.Location = new System.Drawing.Point(163, 188);
-            this.txtCpf.Name = "txtCpf";
-            this.txtCpf.Size = new System.Drawing.Size(33, 16);
-            this.txtCpf.TabIndex = 6;
-            this.txtCpf.Text = "CPF";
-            this.txtCpf.Click += new System.EventHandler(this.label3_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(49, 108);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "CPF";
             // 
-            // txtEmail
+            // label4
             // 
-            this.txtEmail.AutoSize = true;
-            this.txtEmail.Location = new System.Drawing.Point(163, 216);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(41, 16);
-            this.txtEmail.TabIndex = 7;
-            this.txtEmail.Text = "Email";
-            this.txtEmail.Click += new System.EventHandler(this.label4_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(46, 134);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Email";
             // 
             // btnInserir
             // 
-            this.btnInserir.Location = new System.Drawing.Point(280, 263);
+            this.btnInserir.Location = new System.Drawing.Point(97, 204);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(75, 23);
             this.btnInserir.TabIndex = 8;
@@ -119,20 +119,40 @@
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
+            // lstClientes
+            // 
+            this.lstClientes.FormattingEnabled = true;
+            this.lstClientes.Location = new System.Drawing.Point(360, 59);
+            this.lstClientes.Name = "lstClientes";
+            this.lstClientes.Size = new System.Drawing.Size(258, 212);
+            this.lstClientes.TabIndex = 9;
+            // 
+            // btnListar
+            // 
+            this.btnListar.Location = new System.Drawing.Point(360, 278);
+            this.btnListar.Name = "btnListar";
+            this.btnListar.Size = new System.Drawing.Size(75, 23);
+            this.btnListar.TabIndex = 10;
+            this.btnListar.Text = "&Listar Todos";
+            this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnListar);
+            this.Controls.Add(this.lstClientes);
             this.Controls.Add(this.btnInserir);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.txtCpf);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtId);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.txtNome);
+            this.Controls.Add(this.txtId);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -143,15 +163,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.TextBox txtCpf;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label txtCpf;
-        private System.Windows.Forms.Label txtEmail;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnInserir;
+        private System.Windows.Forms.ListBox lstClientes;
+        private System.Windows.Forms.Button btnListar;
     }
 }
-

@@ -52,8 +52,35 @@ namespace ComercialSys91
         private void btnInserir_Click(object sender, EventArgs e)
         {
             Cliente c = new Cliente(txtNome.Text, txtCpf.Text, txtEmail.Text);
-            c.Inserir(c);
-            txtId.Text = c.Id.ToString();
+            c.Inserir();
+            if(c.Id > 0) {
+                txtId.Text = c.Id.ToString();
+                MessageBox.Show("Cliente gravado com sucesso!");
+            }
+            else
+            {
+                MessageBox.Show("Falha ao inserir cliente");
+            }
+           
+
+        }
+
+        private void btnListar_Click(object sender, EventArgs e)
+        {
+            List<Cliente> listaDeClientes = Cliente.Listar();
+            foreach (Cliente cliente in listaDeClientes) {
+                lstClientes.Items.Add(cliente.Id + " - " + cliente.Nome);
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lstClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
