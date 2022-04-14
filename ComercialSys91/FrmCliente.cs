@@ -12,9 +12,9 @@ using ClassLibtinu;
 
 namespace ComercialSys91
 {
-    public partial class Form1 : Form
+    public partial class FrmCliente : Form
     {
-        public Form1()
+        public FrmCliente()
         {
             InitializeComponent();
         }
@@ -80,6 +80,16 @@ namespace ComercialSys91
         }
 
         private void lstClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lstClientes_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }

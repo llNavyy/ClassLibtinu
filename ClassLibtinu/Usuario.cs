@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+
 
 namespace ClassLibtinu
 {
@@ -63,13 +65,46 @@ namespace ClassLibtinu
 
         //métodos da classe
 
-        public int Inserir()
+        public void Inserir()
         {
-            // Chamadas de banco e gravo o registro
-            return id;
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_usuario_inserir";
+            cmd.Parameters.AddWithValue("_nome", Nome);
+            cmd.Parameters.AddWithValue("_email", Email);
+            cmd.Parameters.AddWithValue("_senha", Password);
+            
 
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.Connection.Close();
         }
 
+      /*  public static List<Usuario> Listar()
+        {
+
+            List<Usuario> usuarios = new List<Usuario>();
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from clientes order by nome";
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                usuarios.Add(new Usuario(
+                    dr.GetInt32(0),
+                    dr.GetString(1),
+                    dr.GetString(2),
+                    dr.GetString(3),
+                    dr.GetBoolean(4)
+                   
+                    
+                    ));
+
+            }
+            return usuarios;
+
+        }
+      */
         public static bool EfetuarLogin(string email, string senha)
         {
             return false;

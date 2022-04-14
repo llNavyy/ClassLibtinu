@@ -16,7 +16,6 @@ namespace ClassLibtinu
         private string nome;
         private string cpf;
         private string email;
-    
         private DateTime dataCad;
         private bool ativo;
 

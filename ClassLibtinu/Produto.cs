@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace ClassLibtinu
 {
@@ -12,16 +13,16 @@ namespace ClassLibtinu
         private int id;
         private string descricao;
         private double unidade;
-        private string codBar;
+        private string codbar;
         private double valor;
         private double desconto;
         private bool descontinuado;
 
         // propriedades
-        public int Id { get { return id; } }
+        public int Id { get { return id; } set { id = value; } }
         public string Descricao { get { return descricao; } }
         public double Unidade { get { return unidade; } }
-        public string CodBar { get { return codBar; } }
+        public string Codbar { get { return codbar; } }
         public double Valor { get { return valor; } }
         public double Desconto { get { return desconto; } }
         public bool Descontinuado { get { return descontinuado; } }
@@ -31,27 +32,71 @@ namespace ClassLibtinu
         {
         }
 
-        public Produto(string descricao, double unidade, string codBar, double valor, double desconto)
+        public Produto(string descricao, double unidade, string codbar, double valor, double desconto)
         {
             this.descricao = descricao;
             this.unidade = unidade;
-            this.codBar = codBar;
+            this.codbar = codbar;
             this.valor = valor;
             this.desconto = desconto;
         }
-        public Produto(int id, string descricao, double unidade, string codBar, double valor, double desconto, bool descontinuado)
+        public Produto(int id, string descricao, double unidade, string codbar, double valor, double desconto, bool descontinuado)
         {
             this.id = id;
             this.descricao = descricao;
             this.unidade = unidade;
-            this.codBar = codBar;
+            this.codbar = codbar;
             this.valor = valor;
             this.desconto = desconto;
             this.descontinuado = descontinuado;
         }
 
         // métodos da Classe
-        public void Inserir() { }
+
+        public void Inserir()
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_produto_inserir";
+            cmd.Parameters.AddWithValue("_descricao", descricao);
+            cmd.Parameters.AddWithValue("_unidade", unidade);
+            cmd.Parameters.AddWithValue("_codbar", codbar);
+            cmd.Parameters.AddWithValue("_valor", valor);
+            cmd.Parameters.AddWithValue("_desconto", desconto);
+            cmd.Parameters.AddWithValue("_descontinuado", descontinuado);
+
+
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.Connection.Close();
+        }
+
+        public static List<Produto> Listar()
+        {
+
+            List<Produto> produtos = new List<Produto>();
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from produtos order by nome";
+            var dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                produtos.Add(new Produto(
+                    dr.GetInt32(0),
+                    dr.GetString(1),
+                    dr.GetDouble(2),
+                    dr.GetString(3),
+                    dr.GetDouble(4),
+                    dr.GetDouble(5),
+                    dr.GetBoolean(6)
+                    
+                    ));
+
+            }
+            return produtos;
+
+        }
+
         public Produto BuscarPorId(int _id)
         {
             Produto produto = new Produto();
