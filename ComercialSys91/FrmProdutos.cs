@@ -29,7 +29,7 @@ namespace ComercialSys91
 
             
 
-                Produto p = new Produto(txtDescricao.Text, txtUnidade.Text, txtCodbar.Text, txtValor.Text, txtDesconto.Text);
+            /*    Produto p = new Produto(txtDescricao.Text, txtUnidade.Text, txtCodbar.Text, txtValor.Text, txtDesconto.Text);
                 p.Inserir();
                 if (p.Id > 0)
                 {
@@ -40,7 +40,7 @@ namespace ComercialSys91
                 {
                     MessageBox.Show("Falha ao inserir produto");
                 }
-
+            */
 
             
         }

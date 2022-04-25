@@ -27,5 +27,17 @@ namespace ComercialSys91
             //Irá exibir o formuçário cliente
             frmCliente.Show();
         }
+
+        private void novoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmPedidos frmPedidos = new FrmPedidos();
+            frmPedidos.MdiParent = this;
+            frmPedidos.Show();
+        }
+
+        private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
