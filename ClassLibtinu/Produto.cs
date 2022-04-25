@@ -12,7 +12,7 @@ namespace ClassLibtinu
         // atributos da classe
         private int id;
         private string descricao;
-        private double unidade;
+        private string unidade;
         private string codbar;
         private double valor;
         private double desconto;
@@ -21,7 +21,7 @@ namespace ClassLibtinu
         // propriedades
         public int Id { get { return id; } set { id = value; } }
         public string Descricao { get { return descricao; } }
-        public double Unidade { get { return unidade; } }
+        public string Unidade { get { return unidade; } }
         public string Codbar { get { return codbar; } }
         public double Valor { get { return valor; } }
         public double Desconto { get { return desconto; } }
@@ -32,7 +32,7 @@ namespace ClassLibtinu
         {
         }
 
-        public Produto(string descricao, double unidade, string codbar, double valor, double desconto)
+        public Produto(string descricao, string unidade, string codbar, double valor, double desconto)
         {
             this.descricao = descricao;
             this.unidade = unidade;
@@ -40,7 +40,7 @@ namespace ClassLibtinu
             this.valor = valor;
             this.desconto = desconto;
         }
-        public Produto(int id, string descricao, double unidade, string codbar, double valor, double desconto, bool descontinuado)
+        public Produto(int id, string descricao, string unidade, string codbar, double valor, double desconto, bool descontinuado)
         {
             this.id = id;
             this.descricao = descricao;
@@ -51,56 +51,74 @@ namespace ClassLibtinu
             this.descontinuado = descontinuado;
         }
 
+
+        public Produto( string descricao, string unidade, string codbar, double valor, double desconto, bool descontinuado)
+        {
+            this.descricao = descricao;
+            this.unidade = unidade;
+            this.codbar = codbar;
+            this.valor = valor;
+            this.desconto = 0;
+            this.descontinuado = false;
+        }
+
         // métodos da Classe
 
         public void Inserir()
         {
-            var cmd = Banco.Abrir();
+            //Método irá inserir no banco de dados na tabela PRODUTOS. Utilizand a procedure, que já foi criada no bando de dados.
+            var cmd = Banco.Abrir(); // Podemos utilizar também MySqlCommand cmd = Banco.Abrir(); , lembrando de adicionar a bibilioteca MySql.Data
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "sp_produto_inserir";
             cmd.Parameters.AddWithValue("_descricao", descricao);
             cmd.Parameters.AddWithValue("_unidade", unidade);
             cmd.Parameters.AddWithValue("_codbar", codbar);
             cmd.Parameters.AddWithValue("_valor", valor);
-            cmd.Parameters.AddWithValue("_desconto", desconto);
-            cmd.Parameters.AddWithValue("_descontinuado", descontinuado);
+         
+            cmd.ExecuteNonQuery();
 
-
-            Id = Convert.ToInt32(cmd.ExecuteScalar());
             cmd.Connection.Close();
         }
 
-        public static List<Produto> Listar()
+        public static List<Produto> Listar(string descriParte = null)
         {
+            //Método irá retornar uma lista com todos os produtos, onde todos serão produtos não descontinuados, ordenados por nome.
 
             List<Produto> produtos = new List<Produto>();
             var cmd = Banco.Abrir();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from produtos order by nome";
+            if(descriParte == null)
+            {
+                cmd.CommandText = "select * from produtos where descontinuado = 0 order by 2";
+            }
+            else
+            {//Listará todos os produtos ativos, ordenados por nome, e contendo o termo vindo por parâmetro no método.
+                cmd.CommandText = "select * from produtos where descontinuado = 0 and descricao like '%"+descriParte+"%' order by 2";
+            }
+
             var dr = cmd.ExecuteReader();
 
-            while (dr.Read())
+            while (dr.Read()) //Executa um leitura no banco de dados.
             {
-                produtos.Add(new Produto(
+                produtos.Add(new Produto( //Adiciona essas "leituras" do BD em uma lista.
                     dr.GetInt32(0),
                     dr.GetString(1),
-                    dr.GetDouble(2),
+                    dr.GetString(2),
                     dr.GetString(3),
                     dr.GetDouble(4),
                     dr.GetDouble(5),
                     dr.GetBoolean(6)
-                    
+       
                     ));
 
             }
-            return produtos;
+            return produtos;  //Retorna essa lista para quem consultou.
 
         }
 
         public Produto BuscarPorId(int _id)
         {
             Produto produto = new Produto();
-            // conecta banco realiza consulta por Id do produto
+            // Conectará ao banco e realizará consulta por Id do produto
             return produto;
         }
         public Produto BuscarPorCodBar(string _codBar)
