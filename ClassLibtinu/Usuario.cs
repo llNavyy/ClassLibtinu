@@ -50,15 +50,26 @@ namespace ClassLibtinu
            
         }
 
-        public Usuario(int id, string nome, string email, string password, bool ativo, Nivel nivel)
+        public Usuario(int id, string nome, string email, string password, bool ativo)
         {
             this.id = id;
             this.nome = nome;
             this.email = email;
             this.password = password;
             this.ativo = ativo;
-            this.nivel = nivel;
+           
             
+        }
+
+
+        public Usuario(string nome, string email, string password)
+        {
+            this.nome = nome;
+            this.email = email;
+            this.password = password;
+            //DataCad = DateTime.Now;
+            // ativo = true;
+
         }
 
 
@@ -69,7 +80,7 @@ namespace ClassLibtinu
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "sp_usuario_inserir";
+            cmd.CommandText = "sp_usuarios_inserir";
             cmd.Parameters.AddWithValue("_nome", Nome);
             cmd.Parameters.AddWithValue("_email", Email);
             cmd.Parameters.AddWithValue("_senha", Password);
@@ -79,13 +90,13 @@ namespace ClassLibtinu
             cmd.Connection.Close();
         }
 
-      /*  public static List<Usuario> Listar()
+        public static List<Usuario> Listar()
         {
 
             List<Usuario> usuarios = new List<Usuario>();
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from clientes order by nome";
+            cmd.CommandText = "select * from usuarios order by nome";
             var dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -95,8 +106,9 @@ namespace ClassLibtinu
                     dr.GetString(1),
                     dr.GetString(2),
                     dr.GetString(3),
-                    dr.GetBoolean(4)
-                   
+                    dr.GetBoolean(5)
+
+                    
                     
                     ));
 
@@ -104,7 +116,7 @@ namespace ClassLibtinu
             return usuarios;
 
         }
-      */
+      
         public static bool EfetuarLogin(string email, string senha)
         {
             return false;

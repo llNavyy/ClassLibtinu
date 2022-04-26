@@ -39,5 +39,12 @@ namespace ComercialSys91
         {
 
         }
+
+        private void consultaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmUsuario frmUsuario = new FrmUsuario();
+            frmUsuario.MdiParent = this;
+            frmUsuario.Show();
+        }
     }
 }
