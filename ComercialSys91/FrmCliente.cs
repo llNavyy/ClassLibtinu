@@ -163,5 +163,25 @@ namespace ComercialSys91
                 MessageBox.Show("Falha ao alterar dados do cliente");
             }
         }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCEP_TextChanged(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void txtCEP_Leave(object sender, EventArgs e)
+        {
+            WebCEP endereco = new WebCEP(txtCEP.Text);
+            txtLogradouro.Text = endereco.Logradouro.ToString();
+            txtCidade.Text = endereco.Localidade.ToString();
+            txtBairro.Text = endereco.Bairro.ToString();
+            txtUF.Text = endereco.UF.ToString();
+        }
     }
 }

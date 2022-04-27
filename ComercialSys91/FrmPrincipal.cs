@@ -46,5 +46,11 @@ namespace ComercialSys91
             frmUsuario.MdiParent = this;
             frmUsuario.Show();
         }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            FrmLogin frmLogin = new FrmLogin();
+            frmLogin.ShowDialog();
+        }
     }
 }

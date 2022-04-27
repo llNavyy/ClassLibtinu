@@ -119,7 +119,15 @@ namespace ClassLibtinu
       
         public static bool EfetuarLogin(string email, string senha)
         {
-            return false;
+
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select * from usuarios where email = '"+email+"' and senha = md5('"+senha+"')";
+            var dr = cmd.ExecuteReader();
+
+      
+
+            return dr.Read();
+
 
         }
 
