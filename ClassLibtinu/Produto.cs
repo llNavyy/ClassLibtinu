@@ -69,7 +69,7 @@ namespace ClassLibtinu
             //Método irá inserir no banco de dados na tabela PRODUTOS. Utilizand a procedure, que já foi criada no bando de dados.
             var cmd = Banco.Abrir(); // Podemos utilizar também MySqlCommand cmd = Banco.Abrir(); , lembrando de adicionar a bibilioteca MySql.Data
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "sp_produto_inserir";
+            cmd.CommandText = "sp_produtos_inserir";
             cmd.Parameters.AddWithValue("_descricao", descricao);
             cmd.Parameters.AddWithValue("_unidade", unidade);
             cmd.Parameters.AddWithValue("_codbar", codbar);

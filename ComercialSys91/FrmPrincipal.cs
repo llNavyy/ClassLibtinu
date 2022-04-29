@@ -52,5 +52,12 @@ namespace ComercialSys91
             FrmLogin frmLogin = new FrmLogin();
             frmLogin.ShowDialog();
         }
+
+        private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmProdutos frmProduto = new FrmProdutos();
+            frmProduto.MdiParent = this;
+            frmProduto.Show();
+        }
     }
 }

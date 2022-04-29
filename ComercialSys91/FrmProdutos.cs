@@ -25,22 +25,32 @@ namespace ComercialSys91
 
         private void btnInsere_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Produto produto = new Produto(txtDescricao.Text,
+                txtUnidade.Text,
+                txtCodbar.Text,
+                Double.Parse(txtValor.Text),
+                Double.Parse(txtDesconto.Text));
 
+                produto.Inserir();
 
+                txtDescricao.Clear();
+                txtUnidade.Clear();
+                txtCodbar.Clear();
+                txtCodbar.Clear();
+
+                MessageBox.Show("Produto inserido no sistema com sucesso");
+
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Ocorreu uma falha ao inserir o produto no sistema");
+            }
+            
             
 
-            /*    Produto p = new Produto(txtDescricao.Text, txtUnidade.Text, txtCodbar.Text, txtValor.Text, txtDesconto.Text);
-                p.Inserir();
-                if (p.Id > 0)
-                {
-                    txtId.Text = p.Id.ToString();
-                    MessageBox.Show("Produto gravado com sucesso!");
-                }
-                else
-                {
-                    MessageBox.Show("Falha ao inserir produto");
-                }
-            */
+        
 
             
         }
@@ -48,6 +58,40 @@ namespace ComercialSys91
         private void FrmProdutos_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void listarProdutos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dgvProdutos.Rows.Clear();
+                List<Produto> listaProdutos = Produto.Listar();
+
+                int cont = 0;
+
+                foreach (Produto produto in listaProdutos)
+                {
+                    dgvProdutos.Rows.Add();
+                    dgvProdutos.Rows[cont].Cells[0].Value = produto.Id.ToString();
+                    dgvProdutos.Rows[cont].Cells[1].Value = produto.Codbar.ToString();
+                    dgvProdutos.Rows[cont].Cells[2].Value = produto.Valor.ToString();
+                    dgvProdutos.Rows[cont].Cells[3].Value = produto.Desconto.ToString();
+                    dgvProdutos.Rows[cont].Cells[4].Value = produto.Descricao.ToString();
+                    dgvProdutos.Rows[cont].Cells[5].Value = produto.Unidade.ToString();
+
+
+                }
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro ao listar os produtos");
+            }
         }
     }
 }
